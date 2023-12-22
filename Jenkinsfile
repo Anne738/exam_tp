@@ -3,20 +3,13 @@ pipeline {
         timestamps()
     }
 
-    agent none
+    agent any
 
     stages {
         stage('Check scm') {
             agent any
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Build'){
-            steps{
-                echo "Building ...${BUILD_NUMBER}"
-                echo "Build completed"
             }
         }
 
@@ -28,12 +21,14 @@ pipeline {
                 }
             }
             steps {
-                sh 'apk add --update python3 py-pip'
-                sh 'pip install unittest2==1.1.0'
-                // sh 'pip install --upgrade pip wheel setuptools requests'
-                sh 'pip install xmlrunner'
-                sh 'python3 test.py'
-            }
+    script {
+        sh 'apk add --update python3 py3-pip'
+        sh 'python3 -m venv /path/to/venv'
+        sh '/path/to/venv/bin/pip install unittest2==1.1.0'
+        sh '/path/to/venv/bin/pip install xmlrunner'
+        sh '/path/to/venv/bin/python3 test.py'
+    }
+}
             post {
                 always {
                     junit 'test-reports/*.xml'
