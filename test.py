@@ -16,7 +16,7 @@ class TestAProg(unittest.TestCase):
         with self.assertRaises(AssertionError):
             prog.a_prog(-3)
 
-if name == 'main':
+if name == '__main__':
     import collections.abc
     import collections
     collections.MutableMapping = collections.abc.MutableMapping
