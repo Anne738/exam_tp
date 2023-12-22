@@ -10,4 +10,6 @@ def a_prog(n):
     return sum
 
 
+print(a_prog(5))
+
 
