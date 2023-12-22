@@ -1,4 +1,7 @@
 import unittest
+from unittest.mock import patch
+import io
+from collections.abc import MutableMapping
 import prog
 
 class TestAProg(unittest.TestCase):
@@ -13,11 +16,13 @@ class TestAProg(unittest.TestCase):
         with self.assertRaises(AssertionError):
             prog.a_prog(-3)
 
-if __name__ == "__main__":
+if name == 'main':
+    import collections.abc
+    import collections
+    collections.MutableMapping = collections.abc.MutableMapping
     from xmlrunner import XMLTestRunner
 
+    
     runner = XMLTestRunner(output='test-reports')
     unittest.main(testRunner=runner)
-
     unittest.main()
-
